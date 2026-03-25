@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nids-backend
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./data:/app/data
+      - ./backend/model:/app/model
+      - ./backend/db:/app/db
+      - ./backend/utils:/app/utils
+    environment:
+      - DB_PATH=/app/db/nids.db
+      - FLASK_ENV=production
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nids-frontend
+    network_mode: host
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  data:
+  db:

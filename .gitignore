@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+
+# ML Artifacts
+backend/model/nids_model.pkl
+data/nsl_kdd/
+
+# Node modules
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# Databases
+*.db
+*.db-shm
+*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db
